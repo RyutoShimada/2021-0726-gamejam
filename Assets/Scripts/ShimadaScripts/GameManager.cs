@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] int m_minutes = 1;
+    public int m_minutes = 1;
 
     public float m_seconds = 0;
 
@@ -17,7 +18,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Text m_countDownText = null;
 
-    int m_score = 0;
+    Text m_resultText;
+
+    public int m_enemyCount;
+
+    public int m_allyCount;
+
+    public int m_score = 0;
 
     int m_count = 3;
 
@@ -31,6 +38,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_enemyCount = 0;
+        m_allyCount = 0;
+
         if (m_timerText)
         {
             m_timerText.text = $"{m_minutes.ToString("00")} : {m_seconds.ToString("00")}";
@@ -78,6 +88,7 @@ public class GameManager : MonoBehaviour
             if (m_countDownText.text == "")
             {
                 m_countDownText.text = "GameOver!";
+                SceneManager.LoadScene("ResultScene");
             }
         }
     }
