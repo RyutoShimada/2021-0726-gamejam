@@ -18,12 +18,13 @@ public class Target : MonoBehaviour
 
             GameManager.Instance.AddScore(m_score);
             Debug.Log($"Add : {m_score}");
-
+            GameManager.Instance.m_enemyCount++;
         }
         else
         {
             GameManager.Instance.SubtractionScore(m_score);
             Debug.Log($"Subtraction : {m_score}");
+            GameManager.Instance.m_allyCount++;
         }
     }
 }

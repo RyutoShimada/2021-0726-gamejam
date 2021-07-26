@@ -11,8 +11,8 @@ public class Generator : MonoBehaviour
 
     [SerializeField] List<Transform> m_spawnPoints = default;
 
-    public GameObject enemy;
-    public GameObject ally;
+    GameObject enemy;
+    GameObject ally;
 
     public bool m_isWaited;
     public int m_per = 6;
@@ -59,8 +59,7 @@ public class Generator : MonoBehaviour
         {
             m_timer = 1.0f;
         }
-        
-        
+
         if (m_isWaited == false)
         {
             StartCoroutine(Respawn());
