@@ -49,15 +49,15 @@ public class Generator : MonoBehaviour
         }
         if (timer < 7)
         {
-            m_timer = 0.2f;
+            m_timer = 0.5f;
         }
         else if (timer < 15)
         {
-            m_timer = 0.5f;
+            m_timer = 1.0f;
         }
         else if (timer < 30)
         {
-            m_timer = 1.0f;
+            m_timer = 1.5f;
         }
 
         if (m_isWaited == false)
