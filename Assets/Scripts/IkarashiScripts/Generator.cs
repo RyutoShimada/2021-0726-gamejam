@@ -14,7 +14,7 @@ public class Generator : MonoBehaviour
     public GameObject enemy;
     public GameObject ally;
 
-    bool m_isWaited;
+    public bool m_isWaited;
     public int m_per = 6;
     public float m_timer = 2;
     public int choice;
@@ -37,15 +37,30 @@ public class Generator : MonoBehaviour
 
     void Update()
     {
-        float quotient = GameManager.Instance.m_seconds / 20;
-        if (quotient % 2 >= 2)
+        if (GameManager.Instance.m_isGame == false)
         {
-            m_timer = 1.3f;
+            SetFalse();
+            return;
         }
-        else if (quotient % 2 < 2)
+        float timer = GameManager.Instance.m_seconds;
+        if (timer == 0)
+        {
+            return;
+        }
+        if (timer < 7)
+        {
+            m_timer = 0.2f;
+        }
+        else if (timer < 15)
         {
             m_timer = 0.5f;
         }
+        else if (timer < 30)
+        {
+            m_timer = 1.0f;
+        }
+        
+        
         if (m_isWaited == false)
         {
             StartCoroutine(Respawn());

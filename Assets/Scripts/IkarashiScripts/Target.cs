@@ -15,8 +15,10 @@ public class Target : MonoBehaviour
     {
         if (m_targetType == TargetType.Enemy)
         {
+
             GameManager.Instance.AddScore(m_score);
             Debug.Log($"Add : {m_score}");
+
         }
         else
         {
