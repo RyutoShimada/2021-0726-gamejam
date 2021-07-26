@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int m_minutes = 1;
 
-    [SerializeField] float m_seconds = 0;
+    public float m_seconds = 0;
 
     [SerializeField] Text m_timerText = null;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     int m_count = 3;
 
-    bool m_isGame = false;
+    public bool m_isGame = false;
 
     private void Awake()
     {
