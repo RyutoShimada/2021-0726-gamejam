@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         //Rayのコマンド
         if (Input.GetMouseButtonDown(0))
         {
+            audio.Play();
             enemyDir = pointer - objPos;
             Raycast();
         }
@@ -44,8 +45,8 @@ public class Player : MonoBehaviour
         //Ray判定
         if (hit.collider.gameObject.tag == "Target")
         {
-            audio.Play();
-            //hit.collider.gameObject.GetComponent<Target>().Hit();
+            hit.collider.gameObject.GetComponent<Target>().Hit();
+            hit.collider.gameObject.SetActive(false);
         }
     }
 }
