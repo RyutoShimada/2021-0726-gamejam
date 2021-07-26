@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
                 m_minutes = 0;
                 m_seconds = 0;
                 m_isGame = false;
+                Cursor.visible = true;
                 Debug.Log("GameOver!");
             }
         }
@@ -128,6 +129,7 @@ public class GameManager : MonoBehaviour
         }
 
         m_isGame = true;
+        Cursor.visible = false;
     }
 
     void RefreshScore(int newScore)
