@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     int m_count = 3;
 
+    [HideInInspector]
     public bool m_isGame = false;
 
     private void Awake()
