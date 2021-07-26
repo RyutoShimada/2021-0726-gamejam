@@ -11,11 +11,19 @@ public class Target : MonoBehaviour
 
     [SerializeField] private TargetType m_targetType;
 
+    Animator m_anim;
+
+    private void Start()
+    {
+        m_anim = GetComponent<Animator>();
+    }
+
     public void Hit()
     {
+        m_anim.SetTrigger("Hit");
+
         if (m_targetType == TargetType.Enemy)
         {
-
             GameManager.Instance.AddScore(m_score);
             Debug.Log($"Add : {m_score}");
             GameManager.Instance.m_enemyCount++;
@@ -26,5 +34,7 @@ public class Target : MonoBehaviour
             Debug.Log($"Subtraction : {m_score}");
             GameManager.Instance.m_allyCount++;
         }
+
+        gameObject.SetActive(false);
     }
 }

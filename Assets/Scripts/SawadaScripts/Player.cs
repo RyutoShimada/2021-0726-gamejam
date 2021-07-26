@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         if (hit.collider.gameObject.tag == "Target")
         {
             hit.collider.gameObject.GetComponent<Target>().Hit();
-            hit.collider.gameObject.SetActive(false);
         }
     }
 }

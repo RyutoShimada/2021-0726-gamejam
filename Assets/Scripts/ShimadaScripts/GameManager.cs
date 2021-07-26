@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
 
     Text m_resultText;
 
+    [HideInInspector]
     public int m_enemyCount;
 
+    [HideInInspector]
     public int m_allyCount;
 
+    [HideInInspector]
     public int m_score = 0;
 
     int m_count = 3;
