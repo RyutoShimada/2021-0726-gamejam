@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
 
     Text m_resultText;
 
+    [HideInInspector]
     public int m_enemyCount;
 
+    [HideInInspector]
     public int m_allyCount;
 
+    [HideInInspector]
     public int m_score = 0;
 
     int m_count = 3;
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("m_scoreText がアサインされていません");
         }
 
+        Cursor.visible = false;
         StartCoroutine(CountDown());
     }
 
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour
                 m_minutes = 0;
                 m_seconds = 0;
                 m_isGame = false;
+                Cursor.visible = true;
                 Debug.Log("GameOver!");
             }
         }
