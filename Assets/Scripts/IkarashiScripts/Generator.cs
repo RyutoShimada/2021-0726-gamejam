@@ -14,7 +14,9 @@ public class Generator : MonoBehaviour
     public GameObject enemy;
     public GameObject ally;
 
+    public bool m_isWaited;
     public int m_per = 6;
+    public float m_timer = 2;
     public int choice;
     void Start()
     {
@@ -35,10 +37,34 @@ public class Generator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (GameManager.Instance.m_isGame == false)
         {
             SetFalse();
-            Spawn();
+            return;
+        }
+        float timer = GameManager.Instance.m_seconds;
+        if (timer == 0)
+        {
+            return;
+        }
+        if (timer < 7)
+        {
+            m_timer = 0.2f;
+        }
+        else if (timer < 15)
+        {
+            m_timer = 0.5f;
+        }
+        else if (timer < 30)
+        {
+            m_timer = 1.0f;
+        }
+        
+        
+        if (m_isWaited == false)
+        {
+            StartCoroutine(Respawn());
+            m_isWaited = true;
         }
     }
     /// <summary>
@@ -48,18 +74,26 @@ public class Generator : MonoBehaviour
     {
         for (int i = 0; i < m_spawnPoints.Count; i++)
         {
-            int rnd = Random.Range(0, m_per);
-            if (rnd < 4)
+            int twoChoice = Random.Range(0, 3);
+            if (twoChoice < 2)
             {
-                choice = 0;
+                int rnd = Random.Range(0, m_per);
+                if (rnd < m_per - 1)
+                {
+                    choice = 0;
+                }
+                else if (rnd == m_per - 1)
+                {
+                    choice = 1;
+                }
+                var enemyOrAlly = m_spawnPoints[i].GetChild(choice);
+                enemyOrAlly.gameObject.SetActive(true);
             }
-            else if (rnd == 4)
+            else
             {
-                choice = 1;
+                var enemyOrAlly = m_spawnPoints[i].GetChild(choice);
+                enemyOrAlly.gameObject.SetActive(false);
             }
-            var enemyOrAlly = m_spawnPoints[i].GetChild(choice);
-            enemyOrAlly.gameObject.SetActive(true);
-
         }
     }
     void SetFalse()
@@ -68,5 +102,12 @@ public class Generator : MonoBehaviour
         {
             item.SetActive(false);
         }
+    }
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(m_timer);
+        SetFalse();
+        Spawn();
+        m_isWaited = false;
     }
 }
