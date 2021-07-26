@@ -92,9 +92,15 @@ public class GameManager : MonoBehaviour
             if (m_countDownText.text == "")
             {
                 m_countDownText.text = "GameOver!";
-                SceneManager.LoadScene("ResultScene");
+                StartCoroutine(LoadScene());
             }
         }
+    }
+
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("ResultScene");
     }
 
     void StartTimer()

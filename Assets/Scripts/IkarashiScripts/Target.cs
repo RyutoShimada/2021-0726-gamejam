@@ -11,11 +11,16 @@ public class Target : MonoBehaviour
 
     [SerializeField] private TargetType m_targetType;
 
+    [SerializeField] AudioClip m_enemyClip = null;
+    [SerializeField] AudioClip m_allyClip = null;
+
     Animator m_anim;
+    AudioSource m_audio;
 
     private void Start()
     {
         m_anim = GetComponent<Animator>();
+        m_audio = GetComponent<AudioSource>();
     }
 
     public void Hit()
@@ -27,12 +32,14 @@ public class Target : MonoBehaviour
             GameManager.Instance.AddScore(m_score);
             Debug.Log($"Add : {m_score}");
             GameManager.Instance.m_enemyCount++;
+            AudioSource.PlayClipAtPoint(m_enemyClip, transform.position);
         }
         else
         {
             GameManager.Instance.SubtractionScore(m_score);
             Debug.Log($"Subtraction : {m_score}");
             GameManager.Instance.m_allyCount++;
+            AudioSource.PlayClipAtPoint(m_allyClip, transform.position);
         }
 
         gameObject.SetActive(false);
