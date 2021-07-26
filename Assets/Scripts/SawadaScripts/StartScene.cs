@@ -22,4 +22,8 @@ public class StartScene : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("GameScene");
     }
+    public void Return()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }
